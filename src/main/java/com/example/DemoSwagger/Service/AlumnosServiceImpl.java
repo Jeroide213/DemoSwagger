@@ -1,11 +1,9 @@
 package com.example.DemoSwagger.Service;
 
-import com.example.DemoSwagger.Exception.AlumnoNotFoundException;
+import com.example.DemoSwagger.Exception.EntityNotFoundException;
 import com.example.DemoSwagger.Model.Alumnos;
-import com.example.DemoSwagger.Model.Profesores;
 import com.example.DemoSwagger.Repository.AlumnosRepo;
 import com.example.DemoSwagger.Repository.ProfesoresRepo;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -36,7 +34,7 @@ public class AlumnosServiceImpl implements AlumnosService{
     @Override
     public Alumnos updateAlumno(Long id, Alumnos alumno) {
         Alumnos alumnoExistente = alumnosRepo.findById(id)
-                .orElseThrow(() -> new AlumnoNotFoundException("Alumno with id " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Alumno with id " + id + " not found"));
 
         alumnoExistente.setNombre(alumno.getNombre());
         alumnoExistente.setEdad(alumno.getEdad());
@@ -45,7 +43,7 @@ public class AlumnosServiceImpl implements AlumnosService{
     @Override
     public Alumnos partialUpdateAlumno(Long id, Map<String, Object> updates) {
         Alumnos alumnoExistente = alumnosRepo.findById(id)
-                .orElseThrow(() -> new AlumnoNotFoundException("Alumno with id " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Alumno with id " + id + " not found"));
 
         updates.forEach((key, value) -> {
             switch (key) {

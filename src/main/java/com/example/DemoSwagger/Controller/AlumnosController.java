@@ -1,6 +1,6 @@
 package com.example.DemoSwagger.Controller;
 
-import com.example.DemoSwagger.Exception.AlumnoNotFoundException;
+import com.example.DemoSwagger.Exception.EntityNotFoundException;
 import com.example.DemoSwagger.Model.Alumnos;
 import com.example.DemoSwagger.Service.AlumnosService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -86,7 +86,7 @@ public class AlumnosController {
         Alumnos updatedAlumno;
         try {
             updatedAlumno = alumnoService.updateAlumno(id, alumno);
-        } catch (AlumnoNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(updatedAlumno);
@@ -105,7 +105,7 @@ public class AlumnosController {
         Alumnos updatedAlumno;
         try {
             updatedAlumno = alumnoService.partialUpdateAlumno(id, updates);
-        } catch (AlumnoNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(updatedAlumno);

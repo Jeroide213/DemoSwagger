@@ -1,6 +1,6 @@
 package com.example.DemoSwagger.Model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class alumno_profesor {
